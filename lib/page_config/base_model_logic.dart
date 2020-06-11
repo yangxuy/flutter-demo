@@ -7,18 +7,14 @@ class BaseModelLogic extends ChangeNotifier {
   BuildContext context;
 
   /// 存放流的订阅者
-  final Map<BuildContext, CompositeSubscription> _compositeSubscriptionMap =
-      HashMap();
+  final Map<BuildContext, CompositeSubscription> _compositeSubscriptionMap = HashMap();
 
-  CompositeSubscription get _compositionSubscription =>
-      _compositeSubscriptionMap[context];
+  CompositeSubscription get _compositionSubscription => _compositeSubscriptionMap[context];
 
   /// 存放disposed回调
-  final Map<BuildContext, Set<VoidCallback>> _onDisposedCallbackSets =
-      HashMap();
+  final Map<BuildContext, Set<VoidCallback>> _onDisposedCallbackSets = HashMap();
 
-  Set<VoidCallback> get _onDisposedCallbackSet =>
-      _onDisposedCallbackSets[context];
+  Set<VoidCallback> get _onDisposedCallbackSet => _onDisposedCallbackSets[context];
 
   /// 添加流的订阅者
   /// 用于自动释放流
@@ -36,9 +32,15 @@ class BaseModelLogic extends ChangeNotifier {
 
   attach(BuildContext context) {
     _compositeSubscriptionMap[context] = CompositeSubscription();
+    _onDisposedCallbackSets[context] = Set();
     this.context = context;
+    init();
   }
 
+  /// 初始化可能需要
+  init(){
+
+  }
   notify() {
     notifyListeners();
   }
@@ -53,8 +55,10 @@ class BaseModelLogic extends ChangeNotifier {
 
   @override
   void dispose() {
+    print('dispose');
     _compositionSubscription.dispose();
-    if(_onDisposedCallbackSet!=null){
+    _compositionSubscription.clear();
+    if (_onDisposedCallbackSet != null) {
       _onDisposedCallbackSet.forEach((f) => f());
     }
     super.dispose();
@@ -83,8 +87,7 @@ class CompositeSubscription {
   }
 
   void clear() {
-    _subscriptionsList.forEach(
-        (StreamSubscription<dynamic> subscription) => subscription.cancel());
+    _subscriptionsList.forEach((StreamSubscription<dynamic> subscription) => subscription.cancel());
     _subscriptionsList.clear();
   }
 

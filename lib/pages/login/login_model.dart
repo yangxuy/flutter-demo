@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:demo2/base_ext/model_ext.dart';
@@ -5,6 +6,7 @@ import 'package:demo2/http/api.dart';
 import 'package:demo2/http/http.dart';
 import 'package:demo2/page_config/base_model_logic.dart';
 import 'package:demo2/route_config/pop_route/index.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:demo2/base_ext/stream_ext.dart';
@@ -14,7 +16,7 @@ class LoginModelLogic extends BaseModelLogic with LoadingModel {
   TextEditingController unameController = new TextEditingController();
   TextEditingController pwdController = new TextEditingController();
 
-  handlerLogin() {
+  handlerLogin() async{
     // if ((formKey.currentState as FormState).validate()) {}
     var map = new SplayTreeMap<String, dynamic>();
     map['country'] = '+86';
@@ -26,22 +28,14 @@ class LoginModelLogic extends BaseModelLogic with LoadingModel {
     map['platform'] = 1;
     map['language'] = 'zh';
     map['sign'] = '79d98728cc7d08ee504822bca8bd4d70';
-    Api.login3(map).autoDisposed(this).autoDialog(this).listen((ResultData event) {
+//    await Api.login2(map);
+    Api.login(map)
+        .autoDisposed(this, () {
+      print('cancel');
+    })
+        .autoDialog(this)
+        .listen((ResultData event) {
       print(event.code);
     });
-  }
-
-  testGenaDialog() {
-    ShowPopupPage.showGeneralPopupPage(
-      context,
-      child: Container(
-        width: 100,
-        height: 100,
-        color: Colors.white,
-        child: Center(
-          child: CupertinoActivityIndicator(),
-        ),
-      ),
-    );
   }
 }

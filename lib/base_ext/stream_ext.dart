@@ -13,24 +13,25 @@ extension StreamExt<T> on Stream<T> {
       StreamSubscription<T> subscription;
 
       controller = StreamController<T>(
-          sync: true,
-          onListen: () {
-            subscription = input.listen(
-              (value) {
-                controller.add(value);
-              },
-              onError: controller.addError,
-              onDone: controller.close,
-              cancelOnError: cancelOnError,
-            );
-            model.addStreamSubscription(subscription);
-            if (onDisposed != null) {
-              model.addOnDisposedCallback(onDisposed);
-            }
-          },
-          onPause: ([Future<dynamic> resumeSignal]) => subscription.pause(resumeSignal),
-          onResume: () => subscription.resume(),
-          onCancel: () => subscription.cancel());
+        sync: true,
+        onListen: () {
+          subscription = input.listen(
+            (value) {
+              controller.add(value);
+            },
+            onError: controller.addError,
+            onDone: controller.close,
+            cancelOnError: cancelOnError,
+          );
+          model.addStreamSubscription(subscription);
+          if (onDisposed != null) {
+            model.addOnDisposedCallback(onDisposed);
+          }
+        },
+        onPause: ([Future<dynamic> resumeSignal]) => subscription.pause(resumeSignal),
+        onResume: () => subscription.resume(),
+        onCancel: () => subscription.cancel(),
+      );
 
       return controller.stream.listen(null);
     }));
@@ -41,28 +42,24 @@ extension StreamExt<T> on Stream<T> {
     return transform(StreamTransformer<T, T>((Stream<T> input, bool cancelOnError) {
       StreamController<T> controller;
       StreamSubscription<T> subscription;
-
-      /// 在http的时候 才添加弹窗
-      if (T is ResultData) {
-        model.showDialog();
-      }
-      model.showDialog();
       controller = StreamController<T>(
-          sync: true,
-          onListen: () {
-            subscription = input.listen(
-              (value) {
-                model.closeDialog();
-                controller.add(value);
-              },
-              onError: controller.addError,
-              onDone: controller.close,
-              cancelOnError: cancelOnError,
-            );
-          },
-          onPause: ([Future<dynamic> resumeSignal]) => subscription.pause(resumeSignal),
-          onResume: () => subscription.resume(),
-          onCancel: () => subscription.cancel());
+        sync: true,
+        onListen: () {
+          model.showDialog(); // 添加弹窗
+          subscription = input.listen(
+            (value) {
+              model.closeDialog(); // 关闭
+              controller.add(value);
+            },
+            onError: controller.addError,
+            onDone: controller.close,
+            cancelOnError: cancelOnError,
+          );
+        },
+        onPause: ([Future<dynamic> resumeSignal]) => subscription.pause(resumeSignal),
+        onResume: () => subscription.resume(),
+        onCancel: () => subscription.cancel(),
+      );
       return controller.stream.listen(null);
     }));
   }

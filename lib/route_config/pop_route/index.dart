@@ -5,19 +5,6 @@ import 'popup_builder.dart';
 class ShowPopupPage {
   static bool _isDismissible = false;
 
-  static showGeneralPopupPage(context,{Widget child}) {
-    showGeneralDialog(
-      context: context,
-      barrierLabel: '测试',
-      barrierDismissible: true,
-      barrierColor: Color.fromRGBO(0, 0, 0, 0.5),
-      transitionDuration: Duration(microseconds: 300),
-      pageBuilder: (_, __, ___) {
-        return child;
-      },
-    );
-  }
-
   static showPopupPage<T>(
     BuildContext context, {
     Widget child,

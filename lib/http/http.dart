@@ -20,7 +20,7 @@ class ResultData <T>{
 /// 自定义Header
 Map<String, dynamic> httpHeaders = {
   'Accept': 'application/json,*/*',
-  'Content-Type': 'application/application/json; charset=utf-8',
+  'Content-Type': 'application/json; charset=utf-8',
 };
 
 /*
@@ -31,10 +31,6 @@ Map<String, dynamic> httpHeaders = {
 * 5 包含错误处理
 * 6 提供stream流处理
  */
-
-
-/// 单例使用httpManager调用
-final HttpManager httpManager = HttpManager();
 
 /// HttpManager
 class HttpManager {
@@ -123,8 +119,8 @@ class HttpManager {
   }
 
   ///post async
-  Future<ResultData> post(path, param) async {
-    Response<ResultData> response = await _dio.post(path, data: param);
+  Future<ResultData> post(path, param,{CancelToken cancelToken}) async {
+    Response<ResultData> response = await _dio.post(path, data: param,cancelToken: cancelToken);
     ResultData resultData = response.data;
     return resultData;
   }
@@ -140,3 +136,5 @@ class HttpManager {
   }
 }
 
+/// 单例使用httpManager调用
+final HttpManager httpManager = HttpManager();

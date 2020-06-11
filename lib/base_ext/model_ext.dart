@@ -9,7 +9,7 @@ mixin LoadingModel on BaseModelLogic {
     ShowPopupPage.showPopupPage(
       context,
       barrierLabel: 'loading',
-      dismissible: false,
+      dismissible: true,
       child: Center(
         child: Material(
           child: Container(
