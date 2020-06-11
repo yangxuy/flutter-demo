@@ -1,1 +1,1 @@
-String basePageUrl='http://api.dgcoinex.com/';
+String basePageUrl='http://www.baidu.com/';
