@@ -2,15 +2,23 @@
 
 A new Flutter project.
 
-## Getting Started
+### 路由封装
+- page路由封装
+- pop路由封装
+- overlay页面封装
 
-This project is a starting point for a Flutter application.
+### 页面架构结合provider
+- base-page基础页面
+- base-model-logic页面的model的logic
 
-A few resources to get you started if this is your first Flutter project:
+### http封装处理
+- 全局单例
+- 多cdn配置
+- 日志系统
+- 统一数据结构
+- 错误处理
+- stream流处理
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### 扩展
+- stream扩展
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
