@@ -19,3 +19,19 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class Text extends StatefulWidget {
+  @override
+  _TextState createState() => _TextState();
+}
+
+class _TextState extends State<Text> with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => throw UnimplementedError();
+}

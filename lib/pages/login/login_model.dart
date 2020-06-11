@@ -16,7 +16,7 @@ class LoginModelLogic extends BaseModelLogic with LoadingModel {
   TextEditingController unameController = new TextEditingController();
   TextEditingController pwdController = new TextEditingController();
 
-  handlerLogin() async{
+  handlerLogin() {
     // if ((formKey.currentState as FormState).validate()) {}
     var map = new SplayTreeMap<String, dynamic>();
     map['country'] = '+86';
@@ -28,14 +28,13 @@ class LoginModelLogic extends BaseModelLogic with LoadingModel {
     map['platform'] = 1;
     map['language'] = 'zh';
     map['sign'] = '79d98728cc7d08ee504822bca8bd4d70';
-//    await Api.login2(map);
     Api.login(map)
         .autoDisposed(this, () {
-      print('cancel');
-    })
+          print('cancel');
+        })
         .autoDialog(this)
         .listen((ResultData event) {
-      print(event.code);
-    });
+          print(event.code);
+        });
   }
 }

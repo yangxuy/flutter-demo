@@ -55,7 +55,6 @@ class BaseModelLogic extends ChangeNotifier {
 
   @override
   void dispose() {
-    print('dispose');
     _compositionSubscription.dispose();
     _compositionSubscription.clear();
     if (_onDisposedCallbackSet != null) {

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:demo2/page_config/base_model_logic.dart';
 import 'package:demo2/route_config/pop_route/index.dart';
+import 'package:flutter/scheduler.dart';
 
 /// 扩展BaseModelLogic 添加弹窗
 mixin LoadingModel on BaseModelLogic {
@@ -27,5 +29,14 @@ mixin LoadingModel on BaseModelLogic {
 
   closeDialog() {
     ShowPopupPage.closePopupPage(context);
+  }
+}
+
+mixin  SingleTickerProviderModelMixin on BaseModelLogic implements TickerProvider{
+  Ticker _ticker;
+  @override
+  Ticker createTicker(TickerCallback onTick){
+    _ticker = Ticker(onTick, debugLabel: kDebugMode ? 'created by $this' : null);
+    return _ticker;
   }
 }
