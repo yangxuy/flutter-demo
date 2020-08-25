@@ -1,37 +1,47 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:yx_demo/page_config/base_page.dart';
+import 'package:yx_demo/pages/index.dart';
+import 'int/int_delegate.dart';
+import 'main_mc.dart';
 import 'route_config/page_route/generate_route.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(DemoApp());
+  if (Platform.isAndroid) {
+    SystemUiOverlayStyle systemUiOverlayStyle =
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  }
+}
 
-GlobalKey materialAppkey = GlobalKey();
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class DemoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      onGenerateRoute: onGenerateRoute,
-      key: materialAppkey,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        backgroundColor: Colors.white
-      ),
+    return BasePage<MainMC>(
+      create: (_) => MainMC()..attach(context),
+      builder: (_, MainMC mc, __) {
+        return MaterialApp(
+          onGenerateRoute: onGenerateRoute,
+          key: mc.materialAppKey,
+//          theme: mc.themeData,
+          localizationsDelegates: [
+            IntLocalizationsDelegate(),
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate
+          ],
+          locale: mc.locale,
+          supportedLocales: [
+            const Locale('en', 'US'),
+            const Locale('zh', 'CN'),
+          ],
+        );
+      },
     );
   }
-}
-
-class Text extends StatefulWidget {
-  @override
-  _TextState createState() => _TextState();
-}
-
-class _TextState extends State<Text> with AutomaticKeepAliveClientMixin {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => throw UnimplementedError();
 }

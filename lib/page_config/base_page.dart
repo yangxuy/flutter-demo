@@ -9,9 +9,10 @@ typedef ValueLogicWidgetBuilder<T extends BaseModelLogic> = Widget Function(
 class BasePage<T extends BaseModelLogic> extends StatelessWidget {
   final ValueLogicWidgetBuilder<T> builder;
   final Create<T> create;
+  final T value;
   final Widget child;
 
-  BasePage({this.builder, this.create, this.child});
+  BasePage({this.builder, this.create, this.child, this.value});
 
   Widget logicBuilder(BuildContext context, T provider, Widget child) {
     return builder(context, provider, child);
@@ -19,12 +20,26 @@ class BasePage<T extends BaseModelLogic> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<T>(
-      create: create,
-      child: Consumer<T>(
-        child: child,
-        builder: logicBuilder,
-      ),
-    );
+    if (create != null) {
+      return ChangeNotifierProvider<T>(
+        create: create,
+        child: Consumer<T>(
+          child: child,
+          builder: logicBuilder,
+        ),
+      );
+    }
+
+    if (value != null) {
+      return ChangeNotifierProvider<T>.value(
+        value: value,
+        child: Consumer<T>(
+          child: child,
+          builder: logicBuilder,
+        ),
+      );
+    }
+
+    return null;
   }
 }

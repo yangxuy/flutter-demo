@@ -7,7 +7,7 @@ A new Flutter project.
 - pop路由封装
 - overlay页面封装
 
-### 页面架构结合provider
+### 页面架构MVC结合provider
 - base-page基础页面
 - base-model-logic页面的model的logic
 

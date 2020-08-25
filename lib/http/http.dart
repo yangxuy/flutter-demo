@@ -1,5 +1,5 @@
-import 'package:demo2/base_config/index.dart';
-import 'package:demo2/entity/base_entity.dart';
+import 'package:yx_demo/base_config/index.dart';
+import 'package:yx_demo/entity/base_entity.dart';
 import 'package:dio/dio.dart';
 
 /// 统一返回数据的格式

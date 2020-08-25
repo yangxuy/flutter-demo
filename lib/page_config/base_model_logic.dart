@@ -30,17 +30,18 @@ class BaseModelLogic extends ChangeNotifier {
     _onDisposedCallbackSet.add(callback);
   }
 
-  attach(BuildContext context) {
+  attach(BuildContext context,{dynamic arguments}) {
     _compositeSubscriptionMap[context] = CompositeSubscription();
     _onDisposedCallbackSets[context] = Set();
     this.context = context;
-    init();
+    init(arguments ?? ModalRoute.of(context)?.settings?.arguments);
   }
 
   /// 初始化可能需要
-  init(){
+  init(dynamic arguments){
 
   }
+
   notify() {
     notifyListeners();
   }

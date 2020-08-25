@@ -1,4 +1,4 @@
-import 'package:demo2/page_config/base_page.dart';
+import 'package:yx_demo/page_config/base_page.dart';
 import 'package:flutter/material.dart';
 
 import 'login_model.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:demo2/page_config/base_model_logic.dart';
-import 'package:demo2/route_config/pop_route/index.dart';
+import 'package:yx_demo/page_config/base_model_logic.dart';
+import 'package:yx_demo/route_config/pop_route/index.dart';
 import 'package:flutter/scheduler.dart';
 
 /// 扩展BaseModelLogic 添加弹窗

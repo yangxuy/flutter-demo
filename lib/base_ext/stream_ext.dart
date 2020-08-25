@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:demo2/http/http.dart';
-import 'package:demo2/page_config/base_model_logic.dart';
+import 'package:yx_demo/http/http.dart';
+import 'package:yx_demo/page_config/base_model_logic.dart';
 import 'package:flutter/foundation.dart';
 
 import 'model_ext.dart';

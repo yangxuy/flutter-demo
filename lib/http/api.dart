@@ -1,5 +1,3 @@
-import 'package:demo2/base_config/index.dart';
-
 import 'http.dart';
 
 class Api {
@@ -7,3 +5,4 @@ class Api {
     return httpManager.postRx('api/login_v2', param);
   }
 }
+

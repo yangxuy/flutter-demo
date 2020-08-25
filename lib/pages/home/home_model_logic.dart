@@ -1,6 +1,6 @@
-import 'package:demo2/base_ext/model_ext.dart';
-import 'package:demo2/page_config/base_model_logic.dart';
-import 'package:demo2/route_config/page_overlay/index.dart';
+import 'package:yx_demo/base_ext/model_ext.dart';
+import 'package:yx_demo/page_config/base_model_logic.dart';
+import 'package:yx_demo/route_config/page_overlay/index.dart';
 import 'package:flutter/material.dart';
 
 class Item {

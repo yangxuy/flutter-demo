@@ -1,15 +1,15 @@
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:demo2/base_ext/model_ext.dart';
-import 'package:demo2/http/api.dart';
-import 'package:demo2/http/http.dart';
-import 'package:demo2/page_config/base_model_logic.dart';
-import 'package:demo2/route_config/pop_route/index.dart';
+import 'package:yx_demo/base_ext/model_ext.dart';
+import 'package:yx_demo/http/api.dart';
+import 'package:yx_demo/http/http.dart';
+import 'package:yx_demo/page_config/base_model_logic.dart';
+import 'package:yx_demo/route_config/pop_route/index.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:demo2/base_ext/stream_ext.dart';
+import 'package:yx_demo/base_ext/stream_ext.dart';
 
 class LoginModelLogic extends BaseModelLogic with LoadingModel {
   GlobalKey formKey = new GlobalKey<FormState>();
