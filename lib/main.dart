@@ -26,6 +26,9 @@ class DemoApp extends StatelessWidget {
       create: (_) => MainMC()..attach(context),
       builder: (_, MainMC mc, __) {
         return MaterialApp(
+          theme: ThemeData(
+              // primaryColor: Colors.white
+              ),
           onGenerateRoute: onGenerateRoute,
           key: mc.materialAppKey,
 //          theme: mc.themeData,

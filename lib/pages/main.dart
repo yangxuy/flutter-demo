@@ -18,15 +18,6 @@ class MainPage extends StatelessWidget {
                   pinned: true,
                   centerTitle: true,
                   title: Text('杨旭的个人demo'),
-                  expandedHeight: 200,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: Container(
-                      color: Colors.blue,
-                      child: Row(
-                        children: <Widget>[Text('个人作品')],
-                      ),
-                    ),
-                  ),
                 ),
                 SliverPadding(
                   padding: EdgeInsets.symmetric(horizontal: 10),

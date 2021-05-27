@@ -89,6 +89,7 @@ class NovelBloc extends BaseBloc with SingleTickerProviderModelMixin {
 
   // 颜色
   String urlBg = 'assets/images/read_bg.png';
+
   Color golden = Color(0xff8B7961);
 
   // 动画相关

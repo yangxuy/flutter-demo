@@ -4,12 +4,13 @@ import 'package:yx_demo/pages/cartoon/cartoon.dart';
 import 'package:yx_demo/pages/document/down.dart';
 import 'package:yx_demo/pages/home/home_page.dart';
 import 'package:yx_demo/pages/index.dart';
+import 'package:yx_demo/pages/kline/kline.dart';
 import 'package:yx_demo/pages/language/index.dart';
 import 'package:yx_demo/pages/login/login.dart';
 import 'package:yx_demo/pages/main.dart';
 import 'package:yx_demo/pages/novels/novel.dart';
-import 'package:yx_demo/pages/novel/drag_novel.dart';
-//import 'package:yx_demo/pages/novel/index.dart';
+// import 'package:yx_demo/pages/novel/drag_novel.dart';
+// import 'package:yx_demo/pages/novel/index.dart';
 //import 'package:yx_demo/pages/reader/reader_scene.dart';
 import 'package:yx_demo/pages/reveal/index.dart';
 import 'package:yx_demo/pages/scroll_page/scroll_page.dart';
@@ -50,6 +51,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return SlideFromRightPageBuilder(IndexReveal(), settings: settings);
     case '/scrollPage':
       return SlideFromRightPageBuilder(ScrollPage(), settings: settings);
+    case '/kline':
+      return SlideFromRightPageBuilder(KLine(), settings: settings);
     default:
       return SlideFromRightPageBuilder(LoginPage(), settings: settings);
   }

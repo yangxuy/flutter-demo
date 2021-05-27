@@ -22,8 +22,11 @@ class MainModelLogic extends BaseModelLogic {
           title: item['title'],
           menus: (item['children'] as List)
               .map<Menu>(
-                (v) =>
-                    Menu(name: v['name'], id: v['id'], groupId: v['groupId']),
+                (v) => Menu(
+                    name: v['name'],
+                    id: v['id'],
+                    groupId: v['groupId'],
+                    path: v['path']),
               )
               .toList(),
         ),
@@ -31,47 +34,8 @@ class MainModelLogic extends BaseModelLogic {
     );
   }
 
-  handlerMenuItemTap(int id) {
-    switch (id) {
-      case 0:
-        Navigator.of(context).pushNamed('/down',
-            arguments: "https://flutterchina.club/get-started/install/");
-        break;
-      case 1:
-        Navigator.of(context).pushNamed('/down',
-            arguments: "https://flutterchina.club/get-started/test-drive/");
-        break;
-      case 2:
-        Navigator.of(context).pushNamed('/int');
-        break;
-      case 3:
-        handlerChangeTheme();
-        break;
-      case 4:
-        Navigator.of(context).pushNamed('/animation');
-        break;
-      case 12:
-        Navigator.of(context).pushNamed('/carousel');
-        break;
-      case 16:
-        Navigator.of(context).pushNamed('/canvas');
-        break;
-      case 17:
-        Navigator.of(context).pushNamed('/novel');
-        break;
-      case 18:
-        Navigator.of(context).pushNamed('/cartoon');
-        break;
-      case 19:
-        Navigator.of(context).pushNamed('/systemChrome');
-        break;
-      case 20:
-        Navigator.of(context).pushNamed('/pageReveal');
-        break;
-      case 21:
-        Navigator.of(context).pushNamed('/scrollPage');
-        break;
-    }
+  handlerMenuItemTap(Menu item) {
+    Navigator.of(context).pushNamed(item.path);
   }
 
   handlerChangeTheme() {
@@ -151,7 +115,7 @@ class MainModelLogic extends BaseModelLogic {
     bool r = item.groupId % column == column - 1;
     return InkWell(
       onTap: () {
-        handlerMenuItemTap(item.id);
+        handlerMenuItemTap(item);
       },
       child: Container(
         width: size,
