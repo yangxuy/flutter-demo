@@ -33,12 +33,14 @@ class NextContent extends Content {
 }
 
 class NovelBloc extends BaseBloc with SingleTickerProviderModelMixin {
+  // 每一章节
   StreamController<Section> _sectionController = BehaviorSubject<Section>();
 
   Stream<Section> get sectionStream => _sectionController.stream;
 
   StreamSink<Section> get sectionSink => _sectionController.sink;
 
+  // 滑动百分比
   StreamController<SlideUpdate> _percentController =
       BehaviorSubject<SlideUpdate>();
 
