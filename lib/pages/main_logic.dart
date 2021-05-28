@@ -35,7 +35,9 @@ class MainModelLogic extends BaseModelLogic {
   }
 
   handlerMenuItemTap(Menu item) {
-    Navigator.of(context).pushNamed(item.path);
+    if (item.path != null) {
+      Navigator.of(context).pushNamed(item.path);
+    }
   }
 
   handlerChangeTheme() {
