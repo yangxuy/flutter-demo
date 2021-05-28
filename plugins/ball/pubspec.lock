@@ -8,20 +8,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.5.0-nullsafety.1"
-  ball:
-    dependency: "direct main"
-    description:
-      path: "plugins/ball"
-      relative: true
-    source: path
-    version: "0.0.1"
-  bloc:
-    dependency: transitive
-    description:
-      name: bloc
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "6.1.3"
   boolean_selector:
     dependency: transitive
     description:
@@ -57,20 +43,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.15.0-nullsafety.3"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.1.3"
-  dio:
-    dependency: "direct main"
-    description:
-      name: dio
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.0.10"
   fake_async:
     dependency: transitive
     description:
@@ -83,51 +55,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_bloc:
-    dependency: "direct main"
-    description:
-      name: flutter_bloc
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "6.1.3"
-  flutter_easyrefresh:
-    dependency: "direct main"
-    description:
-      name: flutter_easyrefresh
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.1.8"
-  flutter_localizations:
-    dependency: "direct main"
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
-  http_parser:
-    dependency: transitive
-    description:
-      name: http_parser
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.1.4"
-  intl:
-    dependency: transitive
-    description:
-      name: intl
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.16.1"
-  kline:
-    dependency: "direct main"
-    description:
-      path: "plugins/kline"
-      relative: true
-    source: path
-    version: "0.0.1"
   matcher:
     dependency: transitive
     description:
@@ -142,20 +74,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.3.0-nullsafety.3"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.0.4"
-  novel:
-    dependency: "direct main"
-    description:
-      path: "plugins/novel"
-      relative: true
-    source: path
-    version: "0.0.1"
   path:
     dependency: transitive
     description:
@@ -163,20 +81,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.8.0-nullsafety.1"
-  provider:
-    dependency: "direct main"
-    description:
-      name: provider
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "4.3.3"
-  rxdart:
-    dependency: "direct main"
-    description:
-      name: rxdart
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.24.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -238,13 +142,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.0-nullsafety.3"
-  webview_flutter:
-    dependency: "direct main"
-    description:
-      name: webview_flutter
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.3.24"
 sdks:
   dart: ">=2.10.0-110 <2.11.0"
-  flutter: ">=1.17.0 <2.0.0"
+  flutter: ">=1.17.0"

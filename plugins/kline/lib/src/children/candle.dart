@@ -4,14 +4,17 @@ import '../../kline.dart';
 class CandleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<Market> candleList = [];
     return StreamBuilder<List<Market>>(
       stream: globalKlineBloc.currentKlineListStream,
       builder: (BuildContext context, AsyncSnapshot<List<Market>> snapshot) {
-        if (snapshot.connectionState == ConnectionState.active) {
+        if (snapshot.data != null && snapshot.data.length > 0) {
+          candleList = snapshot.data;
           return CustomPaint(
+            isComplex: true,
             child: Container(),
             painter: CandlePainter(
-              candlerList: snapshot.data,
+              candlerList: candleList,
             ),
           );
         }
@@ -28,10 +31,10 @@ class CandlePainter extends CustomPainter {
 
   CandlePainter({this.candlerList}) {
     deCreasePainter = Paint()
-      ..color = Color(0xFFE66363)
+      ..color = globalKlineBloc.configuration.deCrease
       ..strokeWidth = globalKlineBloc.configuration.kWickWidth;
     inCreasePainter = Paint()
-      ..color = Color(0xFF00B984)
+      ..color = globalKlineBloc.configuration.inCrease
       ..strokeWidth = globalKlineBloc.configuration.kWickWidth;
   }
 
@@ -118,6 +121,6 @@ class CandlePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CandlePainter oldDelegate) {
-    return false;
+    return true;
   }
 }

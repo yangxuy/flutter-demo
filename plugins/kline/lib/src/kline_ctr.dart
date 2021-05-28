@@ -55,6 +55,11 @@ class KlineBloc {
   ///烛台高度占比
   double candleHeightAverage = 0;
 
+  ///判断是否展示一屏
+  double isFull = 0.0;
+
+  double columnGap = 0;
+
   double priceMax = 0;
   double priceMin = 0;
   double pMax;
@@ -106,7 +111,7 @@ class KlineBloc {
       );
       _klineListSubjectSink.add(klineTotalList);
 
-      _getSubKlineList();
+      getSubKlineList();
     }
   }
 
@@ -135,11 +140,25 @@ class KlineBloc {
   _handlerSetFirstShow() {
     firstScreenCandleCount =
         (_getFirstScreenScale() * screenCandleCount).toInt();
+    columnGap = width / configuration.kGridColumnCount;
   }
 
   ///increase 偏移量
-  void _getSubKlineList({int increase, bool isScale = false}) {
-    _handlerSubFromAndTo();
+  void getSubKlineList({int increase, bool isScale = false}) {
+    if (increase != null) {
+      this.increase = increase;
+    }
+    if (isScale) {
+      handlerScaleShow();
+    } else {
+      _handlerSubFromAndTo();
+    }
+
+    debugPrint("++ getSubKlineList from:$fromIndex to:$toIndex len:" +
+        klineTotalList.length.toString() +
+        'firstScreenCandleCount:$firstScreenCandleCount' +
+        'screenCandleCount:$screenCandleCount');
+
     klineCurrentList.clear();
 
     klineCurrentList = klineTotalList.sublist(fromIndex, toIndex);
@@ -157,8 +176,9 @@ class KlineBloc {
       } else {
         fromIndex = 0;
       }
+      isFull = (toIndex - fromIndex) / screenCandleCount;
     } else {
-      /// 数据超出一屏
+      isFull = 1.0;
 
       /// 需要移动的数量
       int dis = firstScreenCandleCount + increase - screenCandleCount;
@@ -173,6 +193,25 @@ class KlineBloc {
       } else {
         fromIndex = 0;
       }
+    }
+  }
+
+  ///缩放计算from to
+  void handlerScaleShow() {
+    if (screenCandleCount > klineTotalList.length) {
+      this.fromIndex = 0;
+      return;
+    }
+    if (isFull == 1.0) {
+      fromIndex = toIndex - screenCandleCount;
+    } else {
+      fromIndex = (toIndex - screenCandleCount * isFull).toInt();
+    }
+    if (fromIndex <= 0) {
+      fromIndex = 0;
+    }
+    if (fromIndex >= klineTotalList.length) {
+      fromIndex = screenCandleCount;
     }
   }
 
@@ -219,5 +258,18 @@ class KlineBloc {
       priceMin = _priceMin;
       volumeMax = _volumeMax;
     }
+  }
+
+  void setCandlestickWidth(double scaleWidth) {
+    if (scaleWidth > globalKlineBloc.configuration.kCandlestickWidthMax ||
+        scaleWidth < globalKlineBloc.configuration.kCandlestickWidthMin) {
+      return;
+    }
+    candlestickWidth = scaleWidth;
+
+    ///缩放跳转总数
+    _getSingleScreenCandleCount();
+
+    _handlerSetFirstShow();
   }
 }

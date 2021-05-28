@@ -34,6 +34,9 @@ dependencies:
   kline:
     path: ./plugins/kline
 
+  ball:
+    path: ./plugins/ball
+
 
   rxdart: ^0.24.1
   flutter_easyrefresh: ^2.1.5
@@ -56,6 +59,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - images/
     - assets/images/
     - assets/
     - mock/

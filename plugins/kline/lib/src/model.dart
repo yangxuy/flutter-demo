@@ -15,8 +15,15 @@ class KlineConfiguration {
   double kCandlestickWidthMax = 20.0; // 烛台最大宽度
   double kCandlestickWidthMin = 2.0; // 烛台最小宽度
   double kWickWidth = 1.0; // 烛台的画线宽度
+  Color deCrease = Color(0xFFE66363);
+  Color inCrease = Color(0xFF00B984);
+
   /// 间距配置
   double kTopMargin = 20.0;
+
+  /// 文字配置
+  Color kTimeCandleTextColor = Color(0xffCFD3E7);
+  double kTimeCandleFontSize = 10.0;
 }
 
 class Market {
@@ -91,4 +98,10 @@ String readTimestamp(int timestamp) {
         '${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
   }
   return time;
+}
+
+///时间转化
+String showTimestamp(int timestamp) {
+  DateTime date = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
+  return '${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')} ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}';
 }

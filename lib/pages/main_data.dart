@@ -25,10 +25,10 @@ List group = [
   {
     "title": "demos",
     "children": [
-      {"name": "canvas", "groupId": 6, "id": 16},
       {"name": "小说", "groupId": 7, "id": 17, 'path': '/novel'},
-      {"name": "漫画", "groupId": 8, "id": 18},
       {"name": "k线", "groupId": 8, "id": 18, 'path': '/kline'},
+      {"name": "3Dball", "groupId": 10, "id": 19, 'path': '/ball'},
+      {"name": "视频", "groupId": 9, "id": 18, 'path': '/video'},
     ]
   }
 ];

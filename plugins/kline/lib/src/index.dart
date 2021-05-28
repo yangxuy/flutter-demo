@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../kline.dart';
 import 'children/candle.dart';
 import 'children/grid.dart';
+import 'children/scroll.dart';
+import 'children/time.dart';
+import 'children/volume.dart';
 
 /// 全局的bloc
 KlineBloc globalKlineBloc;
@@ -35,31 +38,44 @@ class _KLineViewState extends State<KLineView> {
       width: globalKlineBloc.width,
       height: globalKlineBloc.height,
       color: Color(0xff101B2D),
-      child: Column(
+      child: Stack(
         children: [
-          ///k线
-          Expanded(
-            child: Stack(
-              children: [
-                GridWidget(),
-                CandleWidget(),
-              ],
-            ),
-            flex: 7,
-          ),
-
-          /// 时间
-          Expanded(child: Container(), flex: 1),
-
-          /// 交易量
-          Expanded(
-            child: Container(
-              child: GridWidget(
-                isTop: false,
+          Column(
+            children: [
+              ///k线
+              Expanded(
+                child: Stack(
+                  children: [
+                    GridWidget(),
+                    CandleWidget(),
+                  ],
+                ),
+                flex: 7,
               ),
-            ),
-            flex: 2,
+
+              /// 时间
+              Expanded(child: TimeWidget(), flex: 1),
+
+              /// 交易量
+              Expanded(
+                child: Stack(
+                  children: [
+                    /// 网格
+                    GridWidget(
+                      isTop: false,
+                    ),
+
+                    ///交易量烛台
+                    VolumeWidget(),
+                  ],
+                ),
+                flex: 2,
+              ),
+            ],
           ),
+
+          ///事件
+          ScrollWidget(),
         ],
       ),
     );
